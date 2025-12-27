@@ -60,13 +60,8 @@ const MEMO_CONTENT = [
 // MAIN PAGE COMPONENT
 // ============================================================
 export default function BirthdayPage() {
-  // Photo arrays using useMemo
-  const { galleryPhotos, specialPhotos } = useMemo(() => {
-    const allPhotos = Array.from({ length: CONFIG.totalPhotos }, (_, i) => i + 1);
-    const special = CONFIG.specialPhotos;
-    const gallery = allPhotos.filter((num) => !special.includes(num));
-    return { galleryPhotos: gallery, specialPhotos: special };
-  }, []);
+  // Special photos for gift section
+  const specialPhotos = useMemo(() => CONFIG.specialPhotos, []);
 
   // State
   const [showOverlay, setShowOverlay] = useState(true);
