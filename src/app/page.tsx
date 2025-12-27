@@ -20,6 +20,7 @@ import {
 import CakeSectionComponent from "@/components/CakeSection";
 import GiftSectionComponent from "@/components/GiftSection";
 import CountdownSection from "@/components/CountdownSection";
+import GallerySection from "@/components/GallerySection";
 
 // ============================================================
 // 📝 CONFIGURATION - Edit these values!
@@ -186,7 +187,7 @@ export default function BirthdayPage() {
         <SectionDivider icon="📸" />
 
         {/* Section 3: Memory Lane Gallery */}
-        <GallerySection photos={galleryPhotos} />
+        <GallerySection />
 
         {/* Divider */}
         <SectionDivider icon="💌" />
@@ -568,115 +569,7 @@ function HeroSection({ recipientName }: { recipientName: string }) {
   );
 }
 
-// ============================================================
-// GALLERY SECTION (Premium)
-// ============================================================
-function GallerySection({ photos }: { photos: number[] }) {
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
-
-  return (
-    <section className="py-24 px-4 relative">
-      {/* Section Divider Top */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-purple-900/5" />
-
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-center mb-16"
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="flex items-center justify-center gap-4 mb-6"
-        >
-          <div className="h-[1px] w-12 md:w-24 bg-gradient-to-r from-transparent to-pink-500/50" />
-          <Camera className="w-7 h-7 text-pink-400" />
-          <h2 className="text-3xl md:text-5xl font-bold gradient-text">
-            Memory Lane
-          </h2>
-          <Camera className="w-7 h-7 text-pink-400" />
-          <div className="h-[1px] w-12 md:w-24 bg-gradient-to-l from-transparent to-pink-500/50" />
-        </motion.div>
-        <p className="text-zinc-400 text-lg" style={{ fontFamily: "var(--font-dancing)" }}>
-          Momen-momen indah yang kita ukir bersama 💕
-        </p>
-      </motion.div>
-
-      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-        {photos.map((num, index) => (
-          <motion.div
-            key={num}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: index * 0.03, duration: 0.5 }}
-            onMouseEnter={() => setHoveredId(num)}
-            onMouseLeave={() => setHoveredId(null)}
-            className="photo-card aspect-square cursor-pointer group"
-          >
-            <motion.img
-              src={`/assets/${num}.jpeg`}
-              alt={`Memory ${num}`}
-              className="w-full h-full object-cover"
-              whileHover={{ scale: 1.08 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            />
-            {/* Hover Overlay */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: hoveredId === num ? 1 : 0 }}
-              transition={{ duration: 0.3 }}
-              className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
-            />
-            {/* Heart Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ 
-                opacity: hoveredId === num ? 1 : 0,
-                y: hoveredId === num ? 0 : 10 
-              }}
-              transition={{ duration: 0.3 }}
-              className="absolute bottom-3 left-3 flex items-center gap-2"
-            >
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-sm border border-white/10">
-                <Heart className="w-4 h-4 text-pink-400" fill="currentColor" />
-                <span className="text-sm text-white font-medium">#{num}</span>
-              </div>
-            </motion.div>
-            {/* Glow Border on Hover */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: hoveredId === num ? 1 : 0 }}
-              className="absolute inset-0 rounded-xl border-2 border-pink-500/40 pointer-events-none"
-              style={{ boxShadow: "inset 0 0 30px rgba(236, 72, 153, 0.1)" }}
-            />
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Bottom Decoration */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        className="flex justify-center mt-12 gap-3"
-      >
-        {["💕", "📸", "✨", "📸", "💕"].map((emoji, i) => (
-          <motion.span
-            key={i}
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 2, repeat: Infinity, delay: i * 0.15 }}
-            className="text-2xl opacity-60"
-          >
-            {emoji}
-          </motion.span>
-        ))}
-      </motion.div>
-    </section>
-  );
-}
+// Note: GallerySection is now imported from @/components/GallerySection
 
 // ============================================================
 // MEMO SECTION (Heartfelt Letter) - Premium Redesign
