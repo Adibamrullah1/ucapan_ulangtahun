@@ -1,18 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Disable ESLint during build to prevent deployment failures
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  // Disable TypeScript errors during build
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  // Image optimization settings
+  // Output as static export for Vercel
+  output: "export",
+  // Image optimization settings for static export
   images: {
     unoptimized: true,
   },
+  // Trailing slash for static export
+  trailingSlash: true,
 };
 
 export default nextConfig;
