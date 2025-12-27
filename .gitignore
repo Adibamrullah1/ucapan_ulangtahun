@@ -39,3 +39,23 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ============================================================
+# PERSONAL ASSETS - Exclude images and audio
+# ============================================================
+
+# Images in assets folder (keep README)
+/public/assets/*.jpg
+/public/assets/*.jpeg
+/public/assets/*.png
+/public/assets/*.gif
+/public/assets/*.webp
+/public/assets/*.svg
+!/public/assets/README.md
+
+# Audio files (keep README)
+/public/audio/*.mp3
+/public/audio/*.wav
+/public/audio/*.ogg
+/public/audio/*.m4a
+!/public/audio/README.md
